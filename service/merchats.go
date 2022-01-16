@@ -4,15 +4,14 @@ import "time"
 
 type Merchant struct {
 	// Merchant unique ID
-	ID ID `json:"id"`
-	// Merchant name
-	Name string `json:"name"`
+	ID   int64 // Merchant name
+	Name string
 	// Merchant Email address.
-	Email string `json:"email"`
+	Email string
 	// Discount offer by Merchant.
-	Discount float64 `json:"discount"`
+	Discount float64
 	// Total payment from BNPL service to merchant.
-	TotalPayment float64   `json:"total_payment"`
-	CreatedAt    time.Time `json:"created_at"`
-	UpdatedAt    time.Time `json:"updated_at"`
+	TotalPayment float64
+	CreatedAt    time.Time
+	UpdatedAt    time.Time
 }

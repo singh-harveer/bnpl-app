@@ -7,7 +7,7 @@ import (
 
 // User represent User Object.
 type User struct {
-	ID          ID
+	ID          int64
 	Name        string
 	Email       string
 	CreditLimit float64
