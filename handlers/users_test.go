@@ -6,16 +6,16 @@ import (
 	"testing"
 )
 
-func TestAddGetMerchant(t *testing.T) {
+func TestAddGetUser(t *testing.T) {
 	// TODO-add test cases.
 
 }
 
-func prepareMerchantBody(t *testing.T, name, email string, discount float64) []byte {
-	var m = service.Merchant{
-		Name:     name,
-		Email:    email,
-		Discount: discount,
+func prepareUserBody(t *testing.T, name, email string, creditLimt float64) []byte {
+	var m = service.User{
+		Name:        name,
+		Email:       email,
+		CreditLimit: creditLimt,
 	}
 
 	var body, err = json.Marshal(m)
