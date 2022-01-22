@@ -1,4 +1,4 @@
-package localdb
+package mocks
 
 import (
 	"bnpl/service"
@@ -22,8 +22,8 @@ func (db *localDB) AddUser(ctx context.Context, user *service.User) error {
 
 	var now = time.Now().UTC()
 	user.ID = db.lastMerchantID + 1
-	user.CreatedAt = now
-	user.UpdatedAt = now
+	user.CreatedAt = &now
+	user.UpdatedAt = &now
 	db.users[user.Name] = *user
 
 	db.lastUserID++
@@ -71,6 +71,13 @@ func (db *localDB) GetUserByName(ctx context.Context, name string) (service.User
 	return user, nil
 }
 
+// CreditLimit retrieves user credit limit by user'name.
+func (db *localDB) CreditLimit(ctx context.Context, name string) (service.User, error) {
+
+	return service.User{}, nil
+}
+
+// NewLocalDBUserManager return UserManager's object for mock.
 func NewLocalDBUserManager() (service.UserManager, error) {
 	return newlocalDB()
 }

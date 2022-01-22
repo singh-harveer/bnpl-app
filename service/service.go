@@ -15,6 +15,9 @@ type MerchantManager interface {
 
 	// GetMerchantByName
 	GetMerchantByName(ctx context.Context, name string) (Merchant, error)
+
+	// Discount retrieves marchant's discount by name.
+	Discount(ctx context.Context, merchantName string) (Merchant, error)
 }
 
 // UserManager manages users.
@@ -30,8 +33,24 @@ type UserManager interface {
 
 	// GetUserByName
 	GetUserByName(ctx context.Context, name string) (User, error)
+
+	// DuePayment deposit amount towards user due.
+	DuePayment(ctx context.Context, name string, amount float64) (User, error)
+
+	// UserCreditLimit retrieves user credit limit by user'name.
+	CreditLimit(ctx context.Context, name string) (User, error)
 }
 
-// TranscationManager manages transactions.
-type TranscationManager interface {
+// TransactionManager manages transactions.
+type TransactionManager interface {
+	// Create creates new transactions.
+	Create(ctx context.Context, txn Transaction) error
+}
+
+// Reporter manage all consolidating reports.
+type Reporter interface {
+	// TotalDue retrieves all due amount for all users.
+	TotalDue(ctx context.Context) ([]User, error)
+	// AllUserAtCreditLimit retrieves all users which reached credit limits.
+	AllUserAtCreditLimit(ctx context.Context) ([]User, error)
 }

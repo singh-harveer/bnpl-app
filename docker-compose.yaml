@@ -1,0 +1,12 @@
+version: '3'
+services:
+  bnpl-db:
+    image: "postgres" # use latest official postgres version
+    ports:
+      - "5434:5432"
+    environment:
+          - POSTGRES_USER=bnpluser
+          - POSTGRES_PASSWORD=pass123
+          - POSTGRES_DB=bnpldb
+    volumes:
+      - /temp:/var/lib/postgresql/data # persist data even if container shuts down

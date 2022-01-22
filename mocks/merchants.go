@@ -1,4 +1,4 @@
-package localdb
+package mocks
 
 import (
 	"bnpl/service"
@@ -21,8 +21,8 @@ func (db *localDB) AddMerchant(ctx context.Context, merchant *service.Merchant) 
 
 	var now = time.Now().UTC()
 	merchant.ID = db.lastMerchantID + 1
-	merchant.CreatedAt = now
-	merchant.UpdatedAt = now
+	merchant.CreatedAt = &now
+	merchant.UpdatedAt = &now
 	db.merchants[merchant.Name] = *merchant
 
 	db.lastMerchantID++
@@ -68,6 +68,13 @@ func (db *localDB) DeleteMerchantByName(ctx context.Context, name string) error 
 	delete(db.merchants, name)
 
 	return nil
+}
+
+// Discount retrieves marchant's discount by name.
+func (db *localDB) Discount(ctx context.Context, merchantName string) (service.Merchant, error) {
+	// TODO-implementation.
+
+	return service.Merchant{}, nil
 }
 
 func NewLocalDBMerchantManager() (service.MerchantManager, error) {

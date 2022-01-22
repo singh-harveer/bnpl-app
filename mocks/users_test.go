@@ -1,7 +1,7 @@
-package localdb_test
+package mocks_test
 
 import (
-	"bnpl/dao/localdb"
+	"bnpl/mocks"
 	"bnpl/service"
 	"context"
 	"errors"
@@ -13,7 +13,7 @@ func TestAddAndGetUsers(t *testing.T) {
 	var ctx, cancel = context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
-	var merchantMngr, err = localdb.NewLocalDBUserManager()
+	var merchantMngr, err = mocks.NewLocalDBUserManager()
 	if err != nil {
 		t.Fatalf("failed to create users manager object :%v", err)
 	}
@@ -74,7 +74,7 @@ func TestAddAndDeleteUsers(t *testing.T) {
 	var ctx, cancel = context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
-	var merchantMngr, err = localdb.NewLocalDBUserManager()
+	var merchantMngr, err = mocks.NewLocalDBUserManager()
 	if err != nil {
 		t.Fatalf("failed to create user manager object :%v", err)
 	}
@@ -133,7 +133,7 @@ func TestAddAndGetAllUsers(t *testing.T) {
 	var ctx, cancel = context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
-	var merchantMngr, err = localdb.NewLocalDBUserManager()
+	var merchantMngr, err = mocks.NewLocalDBUserManager()
 	if err != nil {
 		t.Fatalf("failed to create user manager object :%v", err)
 	}

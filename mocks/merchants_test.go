@@ -1,7 +1,7 @@
-package localdb_test
+package mocks_test
 
 import (
-	"bnpl/dao/localdb"
+	"bnpl/mocks"
 	"bnpl/service"
 	"context"
 	"errors"
@@ -18,7 +18,7 @@ func TestAddAndGetMerchants(t *testing.T) {
 	var ctx, cancel = context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
-	var merchantMngr, err = localdb.NewLocalDBMerchantManager()
+	var merchantMngr, err = mocks.NewLocalDBMerchantManager()
 	if err != nil {
 		t.Fatalf("failed to create merchant manager object :%v", err)
 	}
@@ -79,7 +79,7 @@ func TestAddAndDeleteMerchants(t *testing.T) {
 	var ctx, cancel = context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
-	var merchantMngr, err = localdb.NewLocalDBMerchantManager()
+	var merchantMngr, err = mocks.NewLocalDBMerchantManager()
 	if err != nil {
 		t.Fatalf("failed to create merchant manager object :%v", err)
 	}
@@ -138,7 +138,7 @@ func TestAddAndGetAllMerchants(t *testing.T) {
 	var ctx, cancel = context.WithTimeout(context.Background(), timeout)
 	defer cancel()
 
-	var merchantMngr, err = localdb.NewLocalDBMerchantManager()
+	var merchantMngr, err = mocks.NewLocalDBMerchantManager()
 	if err != nil {
 		t.Fatalf("failed to create merchant manager object :%v", err)
 	}

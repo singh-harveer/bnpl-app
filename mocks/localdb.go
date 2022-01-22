@@ -1,21 +1,22 @@
-package localdb
+package mocks
 
 import (
 	"bnpl/service"
 	"sync"
 )
 
-const (
-	envDatabaseURI = "BNPL_DB_URL"
-)
-
 // localDB stores user and merchant entities.
 type localDB struct {
-	lastUserID     int64
-	lastMerchantID int64
-	users          map[string]service.User
-	merchants      map[string]service.Merchant
-	m              *sync.RWMutex
+	lastUserID          int64
+	lastMerchantID      int64
+	lastTransactionID   int64
+	userIDToNameMap     map[int64]string
+	merchantIDToNameMap map[int64]string
+
+	users     map[string]service.User
+	usersTxn  map[string]service.Transaction
+	merchants map[string]service.Merchant
+	m         *sync.RWMutex
 }
 
 // newlocalDB creates new localDB object.

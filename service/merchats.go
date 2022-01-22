@@ -2,16 +2,13 @@ package service
 
 import "time"
 
+// Merchant represents Merchants object
 type Merchant struct {
-	// Merchant unique ID
-	ID   int64 // Merchant name
-	Name string
-	// Merchant Email address.
-	Email string
-	// Discount offer by Merchant.
-	Discount float64
-	// Total payment from BNPL service to merchant.
-	TotalPayment float64
-	CreatedAt    time.Time
-	UpdatedAt    time.Time
+	ID           int64      `json:"id,omitempty"`
+	Name         string     `json:"merchantName,omitempty"`
+	Email        string     `json:"email,omitempty"`
+	Discount     float64    `json:"discount,omitempty"`
+	TotalPayment float64    `json:"totalPayment,omitempty"`
+	CreatedAt    *time.Time `json:"createdAt,omitempty"`
+	UpdatedAt    *time.Time `json:"updatedAt,omitempty"`
 }
