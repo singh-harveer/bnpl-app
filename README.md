@@ -3,10 +3,29 @@
 ```docker-compose up -d```
 
 * Run database migrations:
-``` dbmate -u postgres://bnpluser:pass123@0.0.0.0:5434/bnpldb?sslmode=disable up```
+``` dbmate up```
 
 * Run server:
 ```go run server.go```
+
+### APIs:
+    ``` 
+    /users
+    /users/{username}
+    /users/{username}/payback
+    /users/{username}/creditlimit
+
+    /merchants
+    /merchants{merchantname}
+    /merchants/{merchantname}/discount
+    /transactions
+
+    /reports/
+    /reports/creditlimits
+    /reports/dues
+    ```
+
+
 
 
 
