@@ -32,7 +32,7 @@ func Registration(router *gin.Engine, handler *Handler) {
 	router.POST("/merchants", handler.AddMerchant)
 	// Retrieves merchant details by user name.
 	router.GET("/merchants/:name", handler.GetMerchantByName)
-	router.GET("/merchants/:name/discount", handler.GetMerchantByName)
+	router.GET("/merchants/:name/discount", handler.GetMerchantDiscount)
 	// New transaction.
 	router.POST("/transactions", handler.Transaction)
 	// Reports all due amount.

@@ -47,7 +47,7 @@ func (db *postgresDB) GetAllMerchants(ctx context.Context) ([]service.Merchant, 
 	return nil, nil
 }
 
-// GetMerchantByName
+// GetMerchantByName retrieves merchant by namee.
 func (db *postgresDB) GetMerchantByName(ctx context.Context, name string) (service.Merchant, error) {
 	var query = `SELECT id, name, email,
 			discount, total_payment,

@@ -5,6 +5,7 @@ import (
 	"context"
 	"errors"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +17,10 @@ func (h *Handler) AddMerchant(c *gin.Context) {
 
 		return
 	}
+	var now = time.Now().UTC()
+
+	merchant.CreatedAt = &now
+	merchant.UpdatedAt = &now
 
 	var err = h.merchantManager.AddMerchant(context.Background(), &merchant)
 	if err != nil {
