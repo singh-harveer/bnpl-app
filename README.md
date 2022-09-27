@@ -1,4 +1,4 @@
-### Getting Started.
+### BNPL-APP Getting Started.
 * Start postgres docker container:
 ```docker-compose up -d```
 
