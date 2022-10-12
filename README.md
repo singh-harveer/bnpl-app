@@ -1,4 +1,4 @@
-### BNPL-APP Getting Started.
+### BNPL-APP (SIMPL interview assignments) Getting Started.
 * Start postgres docker container:
 ```docker-compose up -d```
 
