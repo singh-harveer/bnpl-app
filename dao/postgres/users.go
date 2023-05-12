@@ -47,13 +47,56 @@ func (db *postgresDB) AddUser(ctx context.Context, user *service.User) error {
 
 // DeleteUserByName delete User by name.
 func (db *postgresDB) DeleteUserByName(ctx context.Context, name string) error {
+	var query = `DELETE FROM ` + userTable + `
+			WHERE name= $1
+			`
 
-	return errNotImplemented
+	var result, err = db.conn.Exec(query, name)
+	if err != nil {
+		return fmt.Errorf("failed to delete user: %w", err)
+	}
+
+	var affectedRow int64
+	affectedRow, err = result.RowsAffected()
+	if err != nil {
+		return fmt.Errorf("failed to get affected row: %w", err)
+	}
+
+	if affectedRow == 0 {
+		return fmt.Errorf("not record found")
+	}
+
+	return nil
 }
 
 // GetAllUsers retrieves all Users.
 func (db *postgresDB) GetAllUsers(ctx context.Context) ([]service.User, error) {
-	return nil, errNotImplemented
+	var query = `SELECT id, name, email,
+	credit_limit, due_amount,
+	created_at, updated_at
+	FROM ` + userTable + `
+	`
+
+	var rows, err = db.conn.QueryContext(ctx, query)
+	if err != nil {
+		return nil, fmt.Errorf("failed to retrieve user: %w", err)
+	}
+
+	var users []service.User
+	if rows.Next() {
+		var user service.User
+		var err = rows.Scan(&user.ID, &user.Name,
+			&user.Email, &user.CreditLimit,
+			&user.DueAmount, &user.CreatedAt,
+			&user.UpdatedAt)
+		if err != nil {
+			return nil, fmt.Errorf("failed to Unmarshal user details: %w", err)
+		}
+
+		users = append(users, user)
+	}
+
+	return users, nil
 }
 
 // GetUserByName retrieves user details by username.
